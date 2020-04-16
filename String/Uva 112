@@ -1,1 +1,36 @@
+#include <iostream>
 
+using namespace std;
+int id(char c){
+    if(c >= 'a' && c <= 'z') return c - 'a';
+    return c - 'A';
+}
+
+int main()
+{
+    int s_num;
+    cin >> s_num;
+    getchar();
+    int total = 0;
+    int freq[26] = {};
+    while(s_num--){
+        string s;
+        getline(cin,s);
+        total += s.length();
+        for(int i = 0; i < s.length(); i++){
+            if(isupper(s[i]) || islower(s[i])) freq[id(s[i])]++;
+        }
+    }
+    for(; total > 0; total--){
+        for(int i = 0; i < 26; i++){
+            if(total == freq[i]) cout << char(i+'A') << " " << freq[i] << endl;
+        }
+    }
+    return 0;
+}
+/*testing
+3
+This is a test.
+Count me 1 2 3 4 5.
+Wow!!!! Is this question easy?
+*/
